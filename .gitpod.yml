@@ -1,0 +1,10 @@
+image:
+  file: .gitpod.Dockerfile
+ports:
+- port: 3000
+tasks:
+- init: touch /tmp/.npm-lock && npm install && rm /tmp/.npm-lock
+  command: npm run watch
+- init: sleep 1 && while [ -f /tmp/.npm-lock ]; do sleep 1; done
+  command: npm run electron:dev:linux
+  openMode: split-right
